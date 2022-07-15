@@ -15,9 +15,9 @@ import urllib.request
 # except urllib.error.URLError as e:
 #     print("time out")
 
-file = open("./baidu.html", "rb")
-html = file.read().decode('utf-8')
-bs = BeautifulSoup(html, "html.parser")
+# file = open("./baidu.html", "rb")
+# html = file.read().decode('utf-8')
+# bs = BeautifulSoup(html, "html.parser")
 '''
 #1.Tag 标签及其内容：拿到第一个指定内容
 print(bs.title)
