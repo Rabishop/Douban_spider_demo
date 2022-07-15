@@ -10,12 +10,12 @@
 
 ## 使用到的库包括以下
 
-| 库      | 功能       |
-| ------- | ---------- |
-| bs4     | 文本分析   |
-| re      | 正则解析   |
+| 库     | 功能 |
+| ------- | -------- |
+| bs4     | 文本分析 |
+| re      | 正则解析 |
 | urllib  | 服务器访问 |
-| xlwt    | Excel存储  |
+| xlwt    | Excel存储 |
 | sqlite3 | 数据库存储 |
 
 ## 启动脚本
@@ -25,3 +25,7 @@
 ```
  python spider.py
 ```
+
+## 学习笔记
+
+[https://xuanyuangoudan.cyou/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%88%AC%E8%99%AB/](https://xuanyuangoudan.cyou/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%88%AC%E8%99%AB/)
