@@ -16,10 +16,12 @@ def main():
     # 1.爬取网页
     baseurl = "https://movie.douban.com/top250?start="
     datalist = getData(baseurl)
-    savepath = ".\\豆瓣电影Top250.xls"
-    # 3.保存数据
-    saveData(datalist, savepath)
+    #savepath = ".\\豆瓣电影Top250.xls"
+    dbpath = "movie.db"
 
+    # 3.保存数据
+    #saveData(datalist, savepath)
+    savaData2DB(datalist, dbpath)
 
 # re库用来通过正则表达式获取指定的字符串
 
@@ -125,7 +127,54 @@ def saveData(datalist, savepath):
 
     book.save(savepath)
 
+# 4.保存到数据库
+def savaData2DB(datalist, dbpath):
+    init_db(dbpath)
+
+    conn = sqlite3.connect(dbpath)
+    cur = conn.cursor()
+
+    for data in datalist:
+        for index in range(len(data)):
+            data[index] = '"' + data[index] + '"'
+
+        sql = '''
+            insert into movie (
+            info_link,pic_link,cname,ename,score,rated,instroduction,info)
+            values (%s)
+        ''' % ",".join(data)
+
+        cur.execute(sql)
+        conn.commit()
+    cur.close()
+    conn.close()
+
+
+# 5.创建数据库
+def init_db(dbpath):
+    sql = '''
+        create table if not exists movie
+        (
+        id integer primary key autoincrement,
+        info_link text,
+        pic_link text,
+        cname varchar,
+        ename varchar,
+        score numeric,
+        rated numeric,
+        instroduction text,
+        info text
+        )
+    '''  # 创建数据库
+    conn = sqlite3.connect(dbpath)
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    conn.commit()
+    conn.close()
+
+
 
 if __name__ == "__main__":
     main()
+    #init_db("movie_test.db")
     print("爬取完毕")
